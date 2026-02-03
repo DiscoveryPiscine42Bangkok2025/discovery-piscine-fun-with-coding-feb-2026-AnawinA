@@ -1,3 +1,3 @@
 #!/bin/bash
 
-find . -type file | wc -e
+ls -1 | wc -l
