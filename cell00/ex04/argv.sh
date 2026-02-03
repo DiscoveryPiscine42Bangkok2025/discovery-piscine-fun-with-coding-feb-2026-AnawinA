@@ -1,17 +1,21 @@
 #!/bin/bash
 
-no_arg() {
+no_arg() { # function about no argument
     echo "No arguments supplied"
 }
 
-any_arg() {
-    for arg in "$@"; do
-        echo "$arg"
+any_arg() { #function about any argument
+    for arg in "$@"; do # loop through all arguments
+        echo "$arg" # print each argument
     done
 }
 
-if [ $# -eq 0 ]; then # $# = number or arg
-    no_arg
+if [ $# -eq 0 ]; then # $# = number of arg
+    no_arg # call no_arg function
 else
-    any_arg "$@" # $@ = all arguments
+    any_arg "$@" # $@ = all arguments (as separate words)
 fi
+
+# ./argv.sh = $#: 0, $@: (none) -> no_arg
+# ./argv.sh 1 2 3 = $#: 3, $@: 1 2 3 -> any_arg
+
