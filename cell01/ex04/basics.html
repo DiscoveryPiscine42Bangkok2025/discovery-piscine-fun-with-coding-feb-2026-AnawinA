@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basics</title>
+    <!-- tab's title -->
+    <style>
+        body {
+            background-color: pink;
+        }
+        .sobig {
+            color: white;
+            text-align: center;
+        }
+        .right {
+            text-align: right;
+            font-family: monospace;
+        }
+        .side-by-side {
+            display: flex;
+        }
+        .side {
+            flex: 1;
+            object-fit: contain;
+        }
+        .side img {
+            width: 100%;
+            height: calc(100% - 20px);
+        }
+    </style>
+</head>
+<body> 
+    <!-- background: pink -->
+    <h1 class="sobig">-so bigger- ★</h1>
+    <!--  -->
+    <div class="side-by-side">
+        <div class="side">
+            <img width="100%" src="https://img.odcdn.com.br/wp-content/uploads/2020/12/o-que-e-shopee.jpg" alt="shopee image">
+            <a href="https://shopee.co.th">Shopee</a>
+        </div>
+        <div class="side">
+            <img width="100%" src="https://images2.thanhnien.vn/528068263637045248/2023/6/23/lazada-7515-1687543624534464399633.jpeg" alt="Basics Image">
+            <a href="https://www.lazada.co.th">Lazada</a>
+        </div>
+    </div>
+    <hr>
+    <p class="right"><em>© aphuratt 2026</em></p>
+</body>
+</html>
