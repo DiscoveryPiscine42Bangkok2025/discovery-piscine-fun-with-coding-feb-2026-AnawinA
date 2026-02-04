@@ -11,14 +11,13 @@
             min-height: 200px;
             margin-top: 10px;
         }
-        #ft_list div {
+        .todo {
             border: 1px solid gray;
             margin: 5px;
             padding: 5px;
             background-color: #f0f0f0;
             cursor: pointer;
-            height: 0;
-            transition: all 0.3s ease;
+            height: 30px;
         }
         button {
             padding: 10px 20px;
@@ -27,16 +26,37 @@
             border: solid 1px black;
             cursor: pointer;
         }
-        .scrollIn {
-            height: 100px;
-            background-color: red;
+        .born {
+            animation: scrollIn 0.5s cubic-bezier(0, 1, 1, 1) forwards;
+        }
+        .hover {
+            animation: wiggle 0.2s linear infinite;
+        }
+
+        @keyframes scrollIn {
+            from {
+                height: 0;
+            }
+            90% {
+                height: 31px;
+            }
+            to {
+                height: 30px;
+            }
+        }
+
+        @keyframes wiggle {
+            0% { transform: rotate(0deg); }
+            25% { transform: rotate(1deg); }
+            50% { transform: rotate(0deg); }
+            75% { transform: rotate(-1deg); }
+            100% { transform: rotate(0deg); }
         }
     </style>
 </head>
 <body>
     <button onclick="addList()">New</button>
     <div id="ft_list">
-        <div class="scrollIn">asfd</div>
     </div>
     <script src="todo.js"></script>
 </body>

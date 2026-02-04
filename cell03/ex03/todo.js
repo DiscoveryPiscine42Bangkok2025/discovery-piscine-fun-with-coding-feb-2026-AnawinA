@@ -12,6 +12,15 @@ function addList() {
                 ftList.removeChild(newItem);
             }
         }); 
-        newItem.classList.add('scrollIn');
+        newItem.addEventListener("mouseover", () => {
+            newItem.classList.add('hover');
+        });
+        newItem.addEventListener("mouseout", () => {
+            newItem.classList.remove('hover');
+        });
+        newItem.classList.add('born');
+        setTimeout(() => {
+            newItem.classList.remove('born');
+        }, 1000);
     }
 }
