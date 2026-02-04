@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        form {
+            display: flex;
+            background: linear-gradient(to right, rgb(100, 100, 211), rgb(143, 196, 123));
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+        input[type="text"], select {
+            margin: 0 10px;
+            padding: 10px;
+            font-size: 2em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100px;
+                        box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+        }
+        input[type="button"] {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+            margin-left: 8px;
+            font-size: large;
+        }
+        input[type="button"]:hover {
+            background-color: #218838;
+        }
+        input[type="button"]:active {
+            background-color: #1e7e34;
+        }
+        select {
+            font-size: 3em;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="center">
+        <form>
+            <input type="text" id="num1" title="num1">
+            <select name="op" id="op" title="num1">
+                <option value="+">+</option>
+                <option value="-">-</option>
+                <option value="*">*</option>
+                <option value="/">/</option>
+                <option value="%">%</option>
+            </select>
+            <input type="text" id="num2" title="num2">
+            <input type="button" value="Try me!" onclick="calculate()">
+        </form>
+    </div>
+    <script>
+        const num1 = document.getElementById('num1');
+        const num2 = document.getElementById('num2');
+        const op = document.getElementById('op');
+        const anError = () => alert('Error :(');
+        const an9000 = () => alert('It’s over 9000!');
+        
+        function calculate() {
+            let n1 = parseFloat(num1.value);
+            let n2 = parseFloat(num2.value);
+            let operator = op.value;
+            let result;
+            if (isNaN(n1) || isNaN(n2) &&
+                n1 < 0 || n2 < 0) {
+                anError();
+                return;
+            }
+            switch (operator) {
+                case '+':
+                    result = n1 + n2;
+                    alert(result);
+                    break;
+                case '-':
+                    result = n1 - n2;
+                    alert(result);
+                    break;
+                case '*':
+                    result = n1 * n2;
+                    alert(result);
+                    break;
+                case '/':
+                    result = n1 / n2;
+                    if (n2 === 0) {
+                        an9000();
+                    } else {
+                        alert(result);
+                    }
+                    break;
+                case '%':
+                    if (n2 === 0) {
+                        an9000();
+                    } else {
+                        alert(result);
+                    }
+                    break;
+                default:
+                    anError();
+                    return;
+            }
+            console.log(result);
+        }
+
+        setInterval(() => alert('Please, use me...'), 30000);
+    </script>
+</body>
+</html>
