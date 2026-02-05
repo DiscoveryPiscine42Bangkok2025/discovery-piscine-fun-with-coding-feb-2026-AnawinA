@@ -5,19 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+        }
         #ft_list {
-            border: 1px solid black;
+            border: 2px solid gray;
             width: 300px;
             min-height: 200px;
             margin-top: 10px;
+            corner-shape: bevel;
+            border-radius: 0 15px 0 0;
         }
         .todo {
             border: 1px solid gray;
             margin: 5px;
             padding: 5px;
-            background-color: #f0f0f0;
+            background-image: linear-gradient(to right, #f0f0f0 25%, #00000055);
             cursor: pointer;
-            height: 30px;
+            min-height: 30px;
+            box-shadow: 3px 3px 0 rgba(0,0,0,0.5);
+            corner-shape: bevel;
+            border-radius: 0 10px 0 0;
         }
         button {
             padding: 10px 20px;
@@ -25,23 +34,42 @@
             border-radius: 0;
             border: solid 1px black;
             cursor: pointer;
+            box-shadow: 0 3px 0 rgba(0,0,0,0.5);
+            font-weight: bold;
+            background-image: linear-gradient(to right, rgb(226, 226, 226), white);
+            corner-shape: bevel;
+            border-radius: 0 10px 0 10px;
+        }
+        button:hover {
+            background-image: linear-gradient(to right, rgb(197, 197, 197), white);         
+        }
+        button:active {
+            box-shadow: 0 0 0 rgba(0,0,0,0.5);
+            transform: translateY(3px);
         }
         .born {
             animation: scrollIn 0.5s cubic-bezier(0, 1, 1, 1) forwards;
         }
         .hover {
             animation: wiggle 0.2s linear infinite;
+            border-color: red;
+            box-shadow: 3px 3px 0 rgba(0,0,0,0.5),
+                inset 0 0 10px rgba(255, 0, 0, 0.384);
+        }
+        .deleting {
+            position: relative;
+            animation: moveRight 0.5s cubic-bezier(0.8, 0, 0.2, 1) forwards;
         }
 
         @keyframes scrollIn {
             from {
-                height: 0;
+                min-height: 0;
             }
             90% {
-                height: 31px;
+                min-height: 31px;
             }
             to {
-                height: 30px;
+                min-height: 30px;
             }
         }
 
@@ -52,10 +80,23 @@
             75% { transform: rotate(-1deg); }
             100% { transform: rotate(0deg); }
         }
+
+        @keyframes moveRight {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+                margin: 5px;
+            }
+            to {
+                transform: translateX(300px);
+                opacity: 0;
+                margin: -20px;
+            }
+        }
     </style>
 </head>
 <body>
-    <button onclick="addList()">New</button>
+    <button onclick="createList()">New</button>
     <div id="ft_list">
     </div>
     <script src="todo.js"></script>
