@@ -29,35 +29,35 @@
         <div id="ball"></div>
     </div>
     <script>
-        const B = '#ball';
+        const $ball = $('#ball');
         let colorN = 0;
         let colors = ['red', 'green', 'blue'];
         let isBoom = false;
-        $(() => {
-            $(B).on({
+        $(document).ready(() => {
+            $ball.on({
                 click: () => {
-                    if (!isBoom) $(B).finish();
-                    if ($(B).width() > 420) {
-                        $(B).animate({
+                    if (!isBoom) $ball.finish();
+                    if ($ball.width() > 420) {
+                        $ball.animate({
                             width: '200px',
                             height: '200px'
                         }, 200, "easeOutElastic");
                         isBoom = true;
                     } else {
-                        $(B).animate({
+                        $ball.animate({
                             width: '+=20px',
                             height: '+=20px'
                         }, 500, "easeOutQuint");
                         isBoom = false;
                     }
                     colorN = (colorN + 1) % colors.length;
-                    $(B).css('background-color', colors[colorN]);
+                    $ball.css('background-color', colors[colorN]);
                 },
                 mouseleave: () => {
                     if (!isBoom) {
-                        $(B).finish();
-                        if ($(B).width() > 200) {
-                            $(B).animate({
+                        $ball.finish();
+                        if ($ball.width() > 200) {
+                            $ball.animate({
                                 width: '-=5px',
                                 height: '-=5px'
                             }, 100);
@@ -65,7 +65,7 @@
                     }
                     colorN = (colorN - 1 + colors.length) % colors.length;
                     console.log(colorN);
-                    $(B).css('background-color', colors[colorN]);
+                    $ball.css('background-color', colors[colorN]);
                 }
             })
         })
