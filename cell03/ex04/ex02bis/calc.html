@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="jquery-4.0.0.min.js"></script>
     <title>Document</title>
     <style>
         .center {
@@ -63,63 +64,54 @@
                 <option value="%">%</option>
             </select>
             <input type="text" id="num2" title="num2">
-            <input type="button" value="Try me!" onclick="calculate()">
+            <input type="button" value="Try me!" id="tryme">
         </form>
     </div>
     <script>
-        const num1 = document.getElementById('num1');
-        const num2 = document.getElementById('num2');
-        const op = document.getElementById('op');
         const anError = () => alert('Error :(');
         const an9000 = () => alert('It’s over 9000!');
-        
-        function calculate() {
-            let n1 = parseFloat(num1.value);
-            let n2 = parseFloat(num2.value);
-            let operator = op.value;
-            let result;
-            if (isNaN(n1) || isNaN(n2) &&
-                n1 < 0 || n2 < 0) {
-                anError();
-                return;
-            }
-            switch (operator) {
-                case '+':
-                    result = n1 + n2;
-                    alert(result);
-                    break;
-                case '-':
-                    result = n1 - n2;
-                    alert(result);
-                    break;
-                case '*':
-                    result = n1 * n2;
-                    alert(result);
-                    break;
-                case '/':
-                    result = n1 / n2;
-                    if (n2 === 0) {
-                        an9000();
-                    } else {
-                        alert(result);
-                    }
-                    break;
-                case '%':
-                    result = n1 % n2;
-                    if (n2 === 0) {
-                        an9000();
-                    } else {
-                        alert(result);
-                    }
-                    break;
-                default:
-                    anError();
+        $(() => {
+            $('#tryme').on('click', function () {
+                let n1 = parseFloat($('#num1').val());
+                let n2 = parseFloat($('#num2').val());
+                let operator = $('#op').val();
+                let result;
+                if (isNaN(n1) || isNaN(n2) &&
+                    n1 < 0 || n2 < 0) {
+                    alert('Error :(');
                     return;
-            }
-            console.log(result);
-        }
-
-        setInterval(() => alert('Please, use me...'), 30000);
+                }
+                switch (operator) {
+                    case '+':
+                        result = n1 + n2;
+                        alert(result);
+                        break;
+                    case '-':
+                        result = n1 - n2;
+                        alert(result);
+                        break;
+                    case '*':
+                        result = n1 * n2;
+                        alert(result);
+                        break;
+                    case '/':
+                        result = n1 / n2;
+                        if (n2 === 0) an9000();
+                        else alert(result);
+                        break;
+                    case '%':
+                        result = n1 % n2;
+                        if (n2 === 0) an9000();
+                        else alert(result);
+                        break;
+                    default:
+                        anError();
+                        return;
+                }
+                console.log(result);
+            });
+            setInterval(() => alert('Please, use me...'), 30000);
+        })
     </script>
 </body>
 </html>

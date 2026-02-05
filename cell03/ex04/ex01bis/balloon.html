@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-4.0.0.min.js"></script>
+    <script src="jquery-ui.min.js"></script>
+    <style>
+        #ball {
+            position: absolute;
+            background-color: red;
+            border-radius: 100%;
+            cursor: pointer;
+            width: 200px;
+            height: 200px;
+            aspect-ratio: 1/1;
+        }
+        .center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+    <div class="center">
+        <div id="ball"></div>
+    </div>
+    <script>
+        const B = '#ball';
+        let colorN = 0;
+        let colors = ['red', 'green', 'blue'];
+        let isBoom = false;
+        $(() => {
+            $(B).on({
+                click: () => {
+                    if (!isBoom) $(B).finish();
+                    if ($(B).width() > 420) {
+                        $(B).animate({
+                            width: '200px',
+                            height: '200px'
+                        }, 200, "easeOutElastic");
+                        isBoom = true;
+                    } else {
+                        $(B).animate({
+                            width: '+=20px',
+                            height: '+=20px'
+                        }, 500, "easeOutQuint");
+                        isBoom = false;
+                    }
+                    colorN = (colorN + 1) % colors.length;
+                    $(B).css('background-color', colors[colorN]);
+                },
+                mouseleave: () => {
+                    if (!isBoom) {
+                        $(B).finish();
+                        if ($(B).width() > 200) {
+                            $(B).animate({
+                                width: '-=5px',
+                                height: '-=5px'
+                            }, 100);
+                        }
+                    }
+                    colorN = (colorN - 1 + colors.length) % colors.length;
+                    console.log(colorN);
+                    $(B).css('background-color', colors[colorN]);
+                }
+            })
+        })
+    </script>
+</body>
+</html>
